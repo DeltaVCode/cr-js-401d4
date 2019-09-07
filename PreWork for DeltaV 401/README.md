@@ -1,4 +1,4 @@
-![cf](http://i.imgur.com/7v5ASc8.png) Code 401: Advanced Software Development in Full-Stack JavaScript
+DeltaV Code 401: Advanced Software Development in Full-Stack JavaScript
 
 ### Pre-work
 
