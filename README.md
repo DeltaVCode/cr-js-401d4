@@ -1,97 +1,20 @@
 # 401 Advanced Javascript
 
-## Course Goals
+## Course At a Glance
+| Block 1                            | Block 2                     | Block 3                     | Block 4                     |
+|------------------------------------|-----------------------------|-----------------------------|-----------------------------|
+| [01: JS Fundamentals](./class-01/README.md)     | [06: HTTP & REST](./class-06/README.md)  | [11: Authentication](./class-11/README.md) | [ 16: Events](./class-16/README.md) |
+| [02: Classes/Inheritance](./class-02/README.md) | [07: Express](./class-07/README.md) | [12: OAuth](./class-12/README.md) | [17: TCP Protocol](./class-17/README.md) |
+| [03: Async](./class-03/README.md)               | [08: REST & Data Modeling](./class-08/README.md) | [13: Bearer Auth](./class-13/README.md) | [18: Socket.io](./class-18/README.md) |
+| [04: Data Modeling](./class-04/README.md)       | [09: API Server](./class-09/README.md) | [14: RBAC / ACL](./class-14/README.md) | [19: Socket.io](./class-19/README.md) |
+| [05: Mongo and NOSQL](class-05/README.md)        | [10: GraphQL](class-10/README.md) | [15: API Server](class-15/README.md) | [20: Q Deploy](class-20/README.md) |
+| Project Week                       |                             |                             |                             |
+| Block 5                            | Block 6                     | Block 7                     | Block 8                     |
+| [26: React Basics](./class-26/README.md)        | [31: Redux](./class-31/README.md) | [36: Context API](./class-36/README.md) | [41: React Native](./class-40/README.md) |
+| [27: Testing & Deployment](./class-27/README.md)        | [32: Forms](./class-32/README.md) | [37: Login/Auth](./class-37/README.md) | [42: React Native](./class-41/README.md) |
+| [28: Props & State](./class-28/README.md)        | [33: Remote APIs](./class-33/README.md) | [38: Sockets](./class-38/README.md) | [43: UI Frameworks](./class-42/README.md) |
+| [29: Routing & Composition](./class-29/README.md)        | [34: CRUD](./class-34/README.md) | [39: Sockets](./class-39/README.md) | [44: Web CMS](./class-43/README.md) |
+| [Project: RESTy to React](class-30/README.md)        | [Project: RESTy to Hooks](class-35/README.md) | [Project: RESTy to Redux](class-40/README.md) | Final Exam |
+| Project Week                       |                             |                             |                             |
 
-### Students will be able to demonstrate ...
-* Complete mastery of JS Fundamentals
-  * Objects, Factories, Classes
-  * Standard and Arrow Functions
-  * Looping, Iteration, Traversal of Arrays and Objects
-  * Recursion
-  * Documentation best practices with JSDoc
-* Understanding of core data structures
-  * When each structure is most appropriate
-  * Real world applicataions of each structure
-  * Looping, Iteration, Traversal
-    * Stacks & Queues
-    * Linked Lists
-    * Trees
-    * Graphs
-    * Hash Tables
-* Creation and operation of an Express web server
-  * Static Routes
-  * Dynamic Routes
-  * EJS
-* Creation and operation of an Express API Server
-  * RESTful, Dynamic Model Management
-  * Authenticated Access with RBAC
-  * Swagger Documentation
-* Creation and operation of a Socket.io Message Queue Server and Client Library
-* Creation of a single page web app in React
-* Creation of a mobile app with React Native
-* Deploy a website to AWS, Heroku, Zeit, Netlify, GoDaddy
-* Deploy an API & Lambda functions at AWS
-
-### Course Takeaways / Alumni Toolkit
-
-* Reliable, Scalable API Server
-* Reliable, Scalable WWW Server
-* Message/Queue Service and Client Library
-* React/Redux Starter App
-* React Native (Mobile) Starter App
-* Stable of React and React Native Components at NPM (Styled)
-  - `<Header />`
-  - `<Footer />`
-  - `<Modal />`
-  - `<Auth />`
-  - `<Rotator />`
-  - `<Autocomplete />`
-  - `<Draggable />` and `<Droppable />`
-* Scalable SASS Layout and Theme Engine
-
-## Student Operation
-
-### Students will **fork** the class repository
-On most days, the lab folder will have some starter-code for them to copy. They will generally be making a new repository each day and copying that code in as a starting point.
-
-It's advisable that the students first make an new org (perhaps called '401-js-<their-name>') that these repositories can be created in, to help them organize things better.
-
-### ASSIGNMENTS
-
-  * **READING (Due before each lecture)**
-    * Reading assignments should be done as articles/notes in the **wiki** of their repo fork
-    
-
-  * **LAB Assignments (4 per block)**
-    * 10 Points (graded on the rubric)
-    * ~ 3-5 Hours
-    * Should be completed in a new repository for each day
-    * Generally, these are smaller implementations, refactors, and practice to support the lecture concept. Not necessarily a full-scale application.
-    * Code must be tested through Travis and deployed through either Heroku or AWS
-    * JS Code must be documented with JSDoc
-    * APIs must also be documented with Swagger
-    * Students must use the README.md template (from the resources folder) to complete their assignment
-    * The README requires working links to deployed code, Travis, functional documentation, test documentation and a UML and/or data-flow diagram.
-
-  * **DESIGN (1 per block)**
-    * 10 Points (complete/incomplete)
-    * Timebox to ~1-2 Hours
-    * Following a short lecture at the end of each block, students will iteratively build out a scalable "design" or "theme" which should be easily transferable to any project they do.
-    
-  * **DS&A IMPLEMENTATION**
-    * 10 Points (complete/incomplete)
-    * Installed at the root level of your `data-structures-and-algorithms` repository
-    * These will be used as libraries to solve code challenges
-    
-  * **DS&A CODE CHALLENGE (4 per block)**
-    * 5 points (3 points for whiteboard, 1 point for testing, 1 point for working code)
-    * Generally requires a working implementation (above) to work
-    * Timebox execution to ~ 1 Hour
-        
-    
-  * **END OF BLOCK PROJECT**
-    * 25 Points (graded on the rubric)
-    * ~ 2 Days (10 hours)
-    * Generally Paired
-    * Takes the learnings/components/modules from the previous 4 classes and has the students assemble them into a larger/full-scale application.
 
