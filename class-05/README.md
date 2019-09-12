@@ -42,7 +42,7 @@ When modeling data for a Document, it's best to start with considering the data 
 
 Using raw JSON is flexible, but problematic.  Programmers don't like surprises.  Enter "Mongoose", and "ORM" for the Mongo database.
 
-**ORM** - Object Relationa Mapping
+**ORM** - Object Relational Mapping
 
 In other words, rules for Document databases. Mongoose is a Node library that makes it easy for developers to not only interface with a Mongo database, but reliably structure the data (without losing flexibility).  Mongoose provides 2 essential things to make this easy for you:
 
