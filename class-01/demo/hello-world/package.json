@@ -1,0 +1,22 @@
+{
+  "name": "hello-world",
+  "version": "3.14.15",
+  "description": "Awesome hello world!",
+  "main": "index.js",
+  "scripts": {
+    "jest": "jest",
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "start": "node .",
+    "watch": "nodemon ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^24.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
