@@ -10,6 +10,16 @@ describe('promiseToReadFile', () => {
         expect(data.toString().trim().length).toBe(14);
       });
   });
+
+  it('calls callback without error, and with data, for real file (async/await)',
+    async () => {
+    const fileToRead = `${__dirname}/test.txt`;
+
+    let data = await promiseToReadFile(fileToRead);
+
+    expect(data).toBeDefined();
+    expect(data.toString().trim().length).toBe(14);
+  });
 });
 
 

@@ -1,6 +1,10 @@
 'use strict';
 
 const fs = require('fs');
+const promisify = require('./util/promisify');
+
+const promiseToReadFile = promisify(fs.readFile);
+const writeFile = promisify(fs.writeFile);
 
 const fileToRead = `${__dirname}/test.txt`;
 console.log(fileToRead);
@@ -33,15 +37,3 @@ function doSomethingWithDataRead() {
   console.log(dataRead.length);
 }
 
-
-function promiseToReadFile(fileName) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(fileName, (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data);
-      }
-    });
-  });
-}
