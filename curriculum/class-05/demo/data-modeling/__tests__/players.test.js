@@ -1,7 +1,7 @@
 const Players = require('../models/players-model.js');
 const players = new Players(); // Repository
 
-const supergoose = require('./supergoose.js');
+require('./supergoose.js');
 
 describe('Players Model', () => {
   it('can create() a Player', async () => {
