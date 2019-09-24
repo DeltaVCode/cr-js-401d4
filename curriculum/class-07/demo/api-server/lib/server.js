@@ -5,5 +5,8 @@ const express = require('express');
 const app = express();
 
 module.exports = {
-  server: app
+  server: app,
+  start: port => {
+    app.listen(port, () => console.log(`Listening on port ${port}`));
+  }
 };
