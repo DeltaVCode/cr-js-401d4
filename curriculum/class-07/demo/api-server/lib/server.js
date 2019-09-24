@@ -2,6 +2,8 @@
 
 const express = require('express');
 const logger = require('./middleware/logger');
+const colorLogger = require('./middleware/color-logger');
+const errorHandler = require('./middleware/error-handler');
 
 const app = express();
 
@@ -11,12 +13,21 @@ app.use(logger);
 // middleware - way to modify request/response
 app.use(express.json());
 
+
 app.get('/', (req, res) => res.send(`Hello, world at ${req.requestTime}`));
+
+app.get('/500', () => {
+  throw new Error('500 test');
+});
+
+app.use(colorLogger('blue'));
 
 let db = [];
 app.get('/categories', (req, res) => {
   res.send(db);
 });
+
+app.use(colorLogger('red', 'MUTATION'));
 
 app.post('/categories', (req, res) => {
   let newRecord = {
@@ -26,6 +37,9 @@ app.post('/categories', (req, res) => {
   db.push(newRecord);
   res.status(201).send(newRecord);
 });
+
+// Error handling needs to happen last
+app.use(errorHandler);
 
 module.exports = {
   server: app,

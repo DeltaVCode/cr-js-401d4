@@ -11,11 +11,17 @@ describe('web server', () => {
       .expect(404);
   });
 
+  it('should return 500 for unhandled error', () => {
+    return mockRequest
+      .get('/500')
+      .expect(500)
+  });
+
   it('should return 200 for home page', () => {
     return mockRequest
       .get('/')
       .expect(200)
-      .expect('Hello, world!');
+      .expect(/^Hello, world/); // we added timestamp to body
   });
 
   it('should return an empty list from /categories', () => {
