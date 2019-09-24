@@ -27,9 +27,7 @@ app.get('/categories', (req, res) => {
   res.send(db);
 });
 
-app.use(colorLogger('red', 'MUTATION'));
-
-app.post('/categories', (req, res) => {
+app.post('/categories', colorLogger('red', 'MUTATION'), (req, res) => {
   let newRecord = {
     ...req.body,
     id: Math.random(),
