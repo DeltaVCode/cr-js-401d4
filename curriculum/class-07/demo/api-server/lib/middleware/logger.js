@@ -4,6 +4,8 @@ module.exports = (req, res, next) => {
 
   req.requestTime = startDate;
 
+  res.set('X-Request-Time', req.requestTime.toISOString());
+
   next();
 
   let endDate = new Date();

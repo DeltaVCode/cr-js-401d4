@@ -5,6 +5,12 @@ const supertest = require('supertest');
 const mockRequest = supertest(server);
 
 describe('web server', () => {
+  it('should set X-Request-Time header on every response', () => {
+    return mockRequest
+      .get('/')
+      .expect('X-Request-Time', /^\d{4}-\d{2}-\d{2}/); // yyyy-MM-dd
+  });
+
   it('should return 404 for missing path', () => {
     return mockRequest
       .get('/404')
