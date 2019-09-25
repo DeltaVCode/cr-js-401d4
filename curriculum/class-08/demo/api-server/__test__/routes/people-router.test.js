@@ -12,23 +12,23 @@ describe('People API', () => {
       .expect([]);
   });
 
-  it('can post() a new people', () => {
+  it('can post() a new people', async () => {
     let newPerson = { name: 'Tyler Durden' };
-    return mockRequest
-      .post('/people')
-      .send(newPerson)
-      .expect(201)
-      .then(response => {
-        expect(response.body)
-          .toMatchObject(newPerson);
-        expect(response.body)
-          .toHaveProperty('id');
+    let { body: savedPerson } =
+      await mockRequest
+        .post('/people')
+        .send(newPerson)
+        .expect(201);
 
-        return mockRequest
-          .get('/people')
-          .expect(200)
-          .expect([response.body])
-      });
+    expect(savedPerson)
+      .toMatchObject(newPerson);
+    expect(savedPerson)
+      .toHaveProperty('id');
+
+    await mockRequest
+      .get('/people')
+      .expect(200)
+      .expect([savedPerson]);
   });
 
   it('returns 500 for post() without name', () => {
