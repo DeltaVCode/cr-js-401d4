@@ -35,11 +35,11 @@ class People {
     }
 
     let id = Object.keys(this.data).length + 1;
-    this.data[record.id] = {
+    this.data[id] = {
       ...record,
       id
     };
-    return Promise.resolve(this.data[record.id]);
+    return Promise.resolve(this.data[id]);
   }
 
 }
