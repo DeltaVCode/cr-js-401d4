@@ -28,6 +28,12 @@ class People {
   }
 
   post(record) {
+    if (!record.name)
+    {
+      // throw
+      return Promise.reject('name is required');
+    }
+
     let id = Object.keys(this.data).length + 1;
     this.data[record.id] = {
       ...record,

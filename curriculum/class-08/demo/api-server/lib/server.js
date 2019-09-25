@@ -3,8 +3,11 @@
 const express = require('express');
 
 const app = express();
+const peopleRoutes = require('../routes/people');
 
 app.use(express.json());
+
+app.use(peopleRoutes);
 
 module.exports = {
   server: app,
