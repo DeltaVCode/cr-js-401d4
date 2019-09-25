@@ -29,6 +29,17 @@ describe('People API', () => {
       .get('/people')
       .expect(200)
       .expect([savedPerson]);
+
+    await mockRequest
+      .get(`/people/${savedPerson.id}`)
+      .expect(200)
+      .expect(savedPerson);
+  });
+
+  it('returns 404 for get by missing id', () => {
+    return mockRequest
+      .get('/people/missing')
+      .expect(404);
   });
 
   it('returns 500 for post() without name', () => {

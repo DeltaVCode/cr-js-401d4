@@ -7,7 +7,17 @@ const peopleRoutes = require('../routes/people');
 
 app.use(express.json());
 
+// Routing test
+app.get('/routes/:id?/:whatever?', (req, res) => {
+  res.send({
+    params: req.params,
+    query: req.query,
+  });
+})
+
 app.use(peopleRoutes);
+// Or, put routes under /api/v1/people, etc
+app.use('/api/v1', peopleRoutes);
 
 module.exports = {
   server: app,
