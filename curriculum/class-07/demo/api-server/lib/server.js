@@ -10,6 +10,14 @@ const app = express();
 // Log each request
 app.use(logger);
 
+app.use((req, res, next) => {
+  if (Math.random() > 0.5) {
+    return next();
+  }
+
+  throw 'You\'re unlucky!'
+});
+
 // middleware - way to modify request/response
 app.use(express.json());
 
