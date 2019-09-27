@@ -50,7 +50,7 @@ class LinkedList {
   constructor(...values) {
     this.head = null;
 
-    for(let i = 0; i < values.length; i++) {
+    for(let i = values.length - 1; i >= 0; i--) {
       let oldHead = this.head;
       this.head = new Node(values[i]);
       this.head.next = oldHead;
