@@ -1,0 +1,27 @@
+{
+  "name": "graphql-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo": "^2.15.0",
+    "apollo-boost": "^0.4.3",
+    "apollo-fetch": "^0.7.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.8.0",
+    "graphql": "^14.4.1",
+    "graphql-request": "^1.8.2",
+    "graphql-tag": "^2.10.1",
+    "graphql-tools": "^4.0.5",
+    "jest": "^24.8.0",
+    "mongoose": "^5.6.2",
+    "node-fetch": "^2.6.0"
+  }
+}
