@@ -1,4 +1,23 @@
 function isPalindrome(list) {
+  // Step 1: Copy list into an array
+  let asArray = list.toArray();
+  console.log(asArray);
+
+  // Step 2: Iterate through half our list
+  let current = list.head;
+  for(let i = 1; i <= asArray.length / 2; i++) {
+    let value = current.value;
+    let oppositeValue = asArray[asArray.length - i];
+    console.log({ value, oppositeValue })
+
+    if (value !== oppositeValue)
+    {
+      return false;
+    }
+
+    current = current.next;
+  }
+
   return true;
 }
 
@@ -8,7 +27,18 @@ describe('isPalindrome', () => {
     [true, [1]],
     [true, [1,1]],
     [true, [2,2]],
+    [true, [2,1,2]],
     [true, [1,2,2,1]],
+    [true, [1,2,3,2,1]],
+    [false, [3,2,3,2,1]],
+    [false, [1,2,3,2,3]],
+    [false, [1,2]],
+    [false, [1,2,3]],
+    [false, [1,2,3,4]],
+    [false, [1,2,3,4,5]],
+    [false, [1,1,1,1,2]],
+    [false, [1,2,1,1,1]],
+    [false, [1,1,1,2,1]],
   ])('returns %p for %p', (expected, values) => {
     let list = new LinkedList(...values);
     expect(list.toArray()).toEqual(values);
