@@ -3,6 +3,21 @@ function isPalindrome(list) {
 }
 
 describe('isPalindrome', () => {
+  it.each([
+    [true, []],
+    [true, [1]],
+    [true, [1,1]],
+    [true, [2,2]],
+    [true, [1,2,2,1]],
+  ])('returns %p for %p', (expected, values) => {
+    let list = new LinkedList(...values);
+    expect(list.toArray()).toEqual(values);
+
+    let res = isPalindrome(list);
+
+    expect(res).toBe(expected);
+  });
+
   it('returns true for empty list', () => {
     let list = new LinkedList();
     expect(list.toArray()).toEqual([]);
