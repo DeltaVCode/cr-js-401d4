@@ -19,6 +19,9 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+const authMiddleware = require('./auth/middleware');
+app.use(authMiddleware);
+
 // Catchalls
 app.use(notFound);
 app.use(errorHandler);
