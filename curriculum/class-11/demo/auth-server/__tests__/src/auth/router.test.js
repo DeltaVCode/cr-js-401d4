@@ -12,4 +12,5 @@ let users = {
 };
 
 describe('Auth Router', () => {
+  it.skip('', () => {})
 });

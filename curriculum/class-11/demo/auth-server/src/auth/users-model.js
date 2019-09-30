@@ -14,12 +14,6 @@ const users = new mongoose.Schema({
 users.statics.authenticateBasic = function(auth) {
   let query = { username: auth.username };
   return this.findOne(query)
-    .then(user => {
-      return user;
-    })
-    .catch(err => {
-      throw err;
-    })
 }
 
 module.exports = mongoose.model('users', users);

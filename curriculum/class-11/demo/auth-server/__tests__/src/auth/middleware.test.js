@@ -2,6 +2,7 @@
 
 const auth = require('../../../src/auth/middleware.js');
 require('../../supergoose.js');
+const User = require('../../../src/auth/users-model');
 
 let users = {
   admin: {username: 'admin', password: 'password', role: 'admin'},
@@ -11,23 +12,27 @@ let users = {
 
 let unauthorizedError = { status: 401 };
 
+beforeAll(async () => {
+  await new User(users.admin).save();
+});
+
 describe('Auth Middleware', () => {
-  it('sets req.user.username from Basic header if user exists', () => {
+  it('sets req.user.username from Basic header if user exists', async () => {
     // Arrange
     let req = {
       headers: {
-        'authorization': 'Basic  dXNlci1hZG1pbjE6cGFzc3dvcmQx',
+        'authorization': 'Basic  YWRtaW46cGFzc3dvcmQ=',
       },
     };
     let res = {};
     let next = jest.fn();
 
     // Act
-    auth(req, res, next);
+    await auth(req, res, next);
 
     // Assert
     expect(req).toHaveProperty('user');
-    expect(req.user).toHaveProperty('username', 'user-admin1');
+    expect(req.user).toHaveProperty('username', 'admin');
     expect(next).toHaveBeenCalledWith();
   });
 
@@ -50,7 +55,7 @@ describe('Auth Middleware', () => {
     expect(next).toHaveBeenCalledWith(unauthorizedError);
   });
 
-  it('leaves req.user is null for unknown Authorization type', () => {
+  it('leaves req.user is null for unknown Authorization type', async () => {
     // Arrange
     let req = {
       headers: {
@@ -61,14 +66,14 @@ describe('Auth Middleware', () => {
     let next = jest.fn();
 
     // Act
-    auth(req, res, next);
+    await auth(req, res, next);
 
     // Assert
     expect(req).toHaveProperty('user', null);
     expect(next).toHaveBeenCalledWith(unauthorizedError);
   });
 
-  it('leaves req.user is null for invalid Basic authorization', () => {
+  it('leaves req.user is null for invalid Basic authorization', async () => {
     // Arrange
     let req = {
       headers: {
@@ -79,7 +84,7 @@ describe('Auth Middleware', () => {
     let next = jest.fn();
 
     // Act
-    auth(req, res, next);
+    await auth(req, res, next);
 
     // Assert
     expect(req).toHaveProperty('user', null);

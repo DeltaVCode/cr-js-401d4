@@ -32,19 +32,17 @@ module.exports = (req, res, next) => {
   }
 
   async function _authenticate(user) {
-    console.log({user});
     if (user) {
       req.user = user;
       next();
     } else {
-      return _authError('User not found');
+      _authError();
     }
   }
 
   async function _authError(error) {
-    console.warn('auth error', error);
     req.user = null;
-    return next({
+    next({
       error,
       status: 401
     });
