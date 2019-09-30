@@ -3,7 +3,7 @@
 const { server } = require('../../../src/app.js');
 const supergoose = require('../../supergoose.js');
 
-const mockRequest = supergoose.server(server);
+const mockRequest = supergoose(server);
 
 let users = {
   admin: {username: 'admin', password: 'password', role: 'admin'},
