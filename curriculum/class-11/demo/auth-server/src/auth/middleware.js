@@ -1,5 +1,7 @@
 'use strict';
 
+const User = require('./users-model');
+
 module.exports = (req, res, next) => {
   try {
     let authorization = req.headers.authorization || '';
@@ -24,12 +26,23 @@ module.exports = (req, res, next) => {
       return _authError();
     }
 
-    req.user = { username };
-
-    next();
+    return User.authenticateBasic({ username, password })
+      .then(user => _authenticate(user))
+      .catch(_authError);
   }
 
-  function _authError(error) {
+  async function _authenticate(user) {
+    console.log({user});
+    if (user) {
+      req.user = user;
+      next();
+    } else {
+      return _authError('User not found');
+    }
+  }
+
+  async function _authError(error) {
+    console.warn('auth error', error);
     req.user = null;
     return next({
       error,

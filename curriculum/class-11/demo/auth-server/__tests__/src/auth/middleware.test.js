@@ -12,7 +12,7 @@ let users = {
 let unauthorizedError = { status: 401 };
 
 describe('Auth Middleware', () => {
-  it('sets req.user.username from Basic header', () => {
+  it('sets req.user.username from Basic header if user exists', () => {
     // Arrange
     let req = {
       headers: {
@@ -29,6 +29,25 @@ describe('Auth Middleware', () => {
     expect(req).toHaveProperty('user');
     expect(req.user).toHaveProperty('username', 'user-admin1');
     expect(next).toHaveBeenCalledWith();
+  });
+
+  it('leaves req.user is null for missing user', async () => {
+    // Arrange
+    let req = {
+      headers: {
+        // user-admin1
+        'authorization': 'Basic  dXNlci1hZG1pbjE6cGFzc3dvcmQx',
+      },
+    };
+    let res = {};
+    let next = jest.fn();
+
+    // Act
+    await auth(req, res, next);
+
+    // Assert
+    expect(req).toHaveProperty('user', null);
+    expect(next).toHaveBeenCalledWith(unauthorizedError);
   });
 
   it('leaves req.user is null for unknown Authorization type', () => {
