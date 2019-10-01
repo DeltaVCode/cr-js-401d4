@@ -58,6 +58,9 @@ describe('Auth Middleware', () => {
 
       return middleware(req,res,next)
         .then( () => {
+          expect(req).toHaveProperty('user');
+          expect(req.user).toHaveProperty('username', 'admin');
+          expect(req).toHaveProperty('token');
           cachedToken = req.token;
           expect(next).toHaveBeenCalledWith();
         });
