@@ -7,7 +7,7 @@
 ### Overall Score and Comments
 #### Score (Out of 10): 7
 #### General Comments
-Describe the stack (front-end only? full stack?), database, efficiency, etc. Describe the general usability and learnability
+Describe the provider. Describe the general usability and learnability.
 
 #### Pros
 * Item 1
@@ -20,9 +20,6 @@ Describe the stack (front-end only? full stack?), database, efficiency, etc. Des
 ### Ratings and Reviews
 #### Documentation
 Thoughts go here
-
-#### Systems Requirements
-Above and beyond 'node' and 'linux', what dependencies or core requirements exist for this framework?  Can it play at AWS/Heroku?  Does it require a certain database?
 
 #### Ramp-Up Projections
 How long would/should it take a team of mid-junior developers to become productive?

@@ -31,6 +31,22 @@ users.methods.comparePassword = function(password) {
     .then(valid => valid ? this : null);
 };
 
+users.statics.createFromOauth = async function(email) {
+  if (!email) throw 'Email is required!';
+
+  let user = await this.findOne({ email });
+  if (user) {
+    console.log('OAuth: User Found', user);
+    return user;
+  } 
+
+  return this.create({
+    username: email,
+    password: Math.random() * Math.random(),
+    email,
+  });
+}
+
 // Generate a JWT from the user id and a secret
 users.methods.generateToken = function() {
   let tokenData = {
