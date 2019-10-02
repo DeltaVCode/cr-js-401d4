@@ -18,10 +18,16 @@ users.pre('save', async function() {
   }
 });
 
-users.statics.authenticateToken = function(token) {
+users.statics.authenticateToken = async function(token) {
   try {
-    let tokenData = jwt.verify(token, process.env.SECRET || 'changeit' )
-    return this.findById(tokenData.id);
+    let tokenData = jwt.decode(token);
+    let user = await this.findById(tokenData.id);
+
+    if (user && jwt.verify(token, user.generateSecret())) {
+      return user;
+    }
+
+    return null;
   }
   catch (error) {
     console.warn('TOKEN ERROR', error);
@@ -64,7 +70,11 @@ users.methods.generateToken = function() {
     id:this._id,
     capabilities: (this.acl && this.acl.capabilities) || [],
   };
-  return jwt.sign(tokenData, process.env.SECRET || 'changeit' );
+  return jwt.sign(tokenData, this.generateSecret());
 };
+
+users.methods.generateSecret = function() {
+  return (process.env.SECRET || 'changeit') + this.password;
+}
 
 module.exports = mongoose.model('users', users);
