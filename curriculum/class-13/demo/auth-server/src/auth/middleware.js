@@ -13,6 +13,8 @@ module.exports = (req, res, next) => {
     switch(authType.toLowerCase()) {
       case 'basic':
         return _authBasic(encodedString);
+      case 'bearer':
+        return _authBearer(encodedString);
       default:
         return _authError();
     }
@@ -31,6 +33,11 @@ module.exports = (req, res, next) => {
       .then( user => _authenticate(user) );
   }
 
+  async function _authBearer(token) {
+    let user = await User.authenticateToken(token);
+    return _authenticate(user);
+  }
+
   async function _authenticate(user) {
     if ( user ) {
       req.user = user;
@@ -43,6 +50,7 @@ module.exports = (req, res, next) => {
   }
 
   async function _authError() {
+    res.set('WWW-Authenticate', 'basic');
     next({status: 401, statusMessage: 'Unauthorized', message: 'Invalid User ID/Password'});
   }
 

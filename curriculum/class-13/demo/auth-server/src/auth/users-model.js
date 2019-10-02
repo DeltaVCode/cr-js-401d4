@@ -18,6 +18,17 @@ users.pre('save', async function() {
   }
 });
 
+users.statics.authenticateToken = function(token) {
+  try {
+    let tokenData = jwt.verify(token, process.env.SECRET || 'changeit' )
+    return this.findById(tokenData.id);
+  }
+  catch (error) {
+    console.warn('TOKEN ERROR', error);
+    return null;
+  }
+}
+
 users.statics.authenticateBasic = function(auth) {
   let query = {username:auth.username};
   return this.findOne(query)

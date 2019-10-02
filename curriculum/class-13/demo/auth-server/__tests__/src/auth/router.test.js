@@ -35,6 +35,7 @@ describe('Auth Router', () => {
         });
     });
 
+    let savedToken;
     it('can signin with basic', () => {
       return mockRequest.get('/signin')
         .auth(users[userType].username, users[userType].password)
@@ -43,8 +44,23 @@ describe('Auth Router', () => {
           var token = jwt.verify(results.text, process.env.SECRET || 'changeit');
           expect(token.id).toEqual(id);
           expect(token.capabilities).toBeDefined();
+
+          savedToken = results.text;
         });
     });
 
+    it('can sign in with bearer token', async () => {
+      expect(savedToken).toBeDefined();
+      expect(savedToken).not.toBe('');
+
+      let response = await mockRequest
+        .get('/signin')
+        .set('Authorization', `Bearer ${savedToken}`)
+        .expect(200);
+
+      var token = jwt.verify(response.text, process.env.SECRET || 'changeit');
+      expect(token.id).toEqual(id);
+      expect(token.capabilities).toBeDefined();
+    })
   });
 });
