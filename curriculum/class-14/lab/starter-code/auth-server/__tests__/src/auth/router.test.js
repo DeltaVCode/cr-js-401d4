@@ -16,10 +16,8 @@ let users = {
   user: {username: 'user', password: 'password', role: 'user'},
 };
 
-beforeAll(async (done) => {
-  done()
+beforeAll(async () => {
 });
-
 
 
 describe('Auth Router', () => {
