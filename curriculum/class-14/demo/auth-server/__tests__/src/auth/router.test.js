@@ -16,7 +16,7 @@ let users = {
 };
 
 let roles = {
-  admin: ['create','read','update','delete'],
+  admin: ['create','read','update','delete','generate-key'],
   editor: ['create','read','update'],
   user: ['read'],
 };
@@ -82,6 +82,15 @@ describe('Auth Router', () => {
       expect(token.capabilities).toEqual(roles[users[userType].role])
     })
 
+    it('allows /key only for admin', () => {
+      let user = users[userType];
+
+      return mockRequest
+        .post('/key')
+        .set('Authorization', `Bearer ${savedToken}`)
+        .expect(user.role === 'admin' ? 200 : 401);
+    });
+
     it('cannot sign in with bearer token after password is changed', async () => {
       // Arrange
       expect(savedToken).toBeDefined();
@@ -94,6 +103,6 @@ describe('Auth Router', () => {
         .get('/signin')
         .set('Authorization', `Bearer ${savedToken}`)
         .expect(401);
-    })
+    });
   });
 });

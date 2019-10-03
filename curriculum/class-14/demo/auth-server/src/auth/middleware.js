@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('./users-model.js');
 const usedTokens = [];
 
-module.exports = () =>
+module.exports = (capability) =>
   (req, res, next) => {
 
   try {
@@ -58,6 +58,10 @@ module.exports = () =>
 
   async function _authenticate(user) {
     if ( user ) {
+      if (capability && !user.can(capability)) {
+        console.log("CAN'T", capability, user);
+        await _authError();
+      }
       req.user = user;
       req.token = user.generateToken();
       next();

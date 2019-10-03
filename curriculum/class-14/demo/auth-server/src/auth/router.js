@@ -24,7 +24,7 @@ authRouter.get('/signin', auth(), (req, res, next) => {
   res.send(req.token);
 });
 
-authRouter.post('/key', auth(), (req, res) => {
+authRouter.post('/key', auth('generate-key'), (req, res) => {
   res.send(req.user.generateToken('key'));
 });
 

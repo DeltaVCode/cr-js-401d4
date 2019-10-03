@@ -121,4 +121,8 @@ users.methods.generateSecret = function() {
   return (process.env.SECRET || 'changeit') + this.password;
 }
 
+users.methods.can = function(capability) {
+  return this.acl.capabilities.includes(capability);
+}
+
 module.exports = mongoose.model('users', users);
