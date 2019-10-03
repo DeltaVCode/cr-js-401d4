@@ -65,7 +65,7 @@ users.statics.createFromOauth = async function(email) {
 }
 
 // Generate a JWT from the user id and a secret
-users.methods.generateToken = function(type = 'user') {
+users.methods.generateToken = function(type = 'user', expiresIn) {
   let tokenData = {
     id:this._id,
     capabilities: (this.acl && this.acl.capabilities) || [],
@@ -74,10 +74,10 @@ users.methods.generateToken = function(type = 'user') {
 
   let options = {};
 
-  if (process.env.TOKEN_EXPIRE)
+  if (expiresIn || process.env.TOKEN_EXPIRE && type !== 'key')
   {
     console.log('TOKEN_EXPIRE', process.env.TOKEN_EXPIRE);
-    options.expiresIn = process.env.TOKEN_EXPIRE;
+    options.expiresIn = expiresIn || process.env.TOKEN_EXPIRE;
   }
 
   return jwt.sign(tokenData, this.generateSecret(), options);

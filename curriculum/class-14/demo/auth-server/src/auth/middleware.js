@@ -1,5 +1,6 @@
 'use strict';
 
+const jwt = require('jsonwebtoken');
 const User = require('./users-model.js');
 const usedTokens = [];
 
@@ -35,12 +36,18 @@ module.exports = (req, res, next) => {
   }
 
   async function _authBearer(token) {
+    // TODO: should this live in User.authenticateToken(token)
     if(process.env.TOKEN_ONE_TIME) {
-      if (usedTokens.indexOf(token) >= 0) {
+      try {
+        let { type } = jwt.decode(token);
+        if (type !== 'key' && usedTokens.indexOf(token) >= 0) {
+          return _authError();
+        }
+        else {
+          usedTokens.push(req.token);
+        }
+      }catch(error) {
         return _authError();
-      }
-      else {
-        usedTokens.push(req.token);
       }
     }
 
