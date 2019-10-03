@@ -1,0 +1,19 @@
+{
+  "name": "json-server-demo",
+  "version": "1.0.0",
+  "description": "To use custom routes:\r     json-server --id=_id --watch db.json --routes routes.json",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "json-server --watch db.json --id=_id --routes=routes.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.15.1"
+  }
+}

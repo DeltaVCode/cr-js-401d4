@@ -1,0 +1,26 @@
+{
+  "posts": [
+    {
+      "title": "These demos should really just work",
+      "author": "Code Fellows",
+      "article": "<strong>Really</strong> happy with this"
+    }
+  ],
+  "categories": [
+    {
+      "_id": 1,
+      "name": "Video Games"
+    },
+    {
+      "name": "Computers",
+      "brand": "Dell",
+      "_id": 5,
+      "best-seller": "MacBook"
+    },
+    {
+      "_id": 7,
+      "name": "Whatever"
+    }
+  ],
+  "products": []
+}
