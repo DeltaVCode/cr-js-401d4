@@ -3,7 +3,7 @@
 ## Course At a Glance
 | Block 1                            | Block 2                     | Block 3                     | Block 4                     |
 |------------------------------------|-----------------------------|-----------------------------|-----------------------------|
-| [01: JS Fundamentals](./class-01/README.md)     | [06: HTTP & REST](./class-06/README.md)  | [11: Authentication](./class-11/README.md) | [ 16: Events](./class-16/README.md) |
+| [01: JS Fundamentals](curriculum/class-01/README.md)     | [06: HTTP & REST](./class-06/README.md)  | [11: Authentication](./class-11/README.md) | [ 16: Events](./class-16/README.md) |
 | [02: Classes/Inheritance](./class-02/README.md) | [07: Express](./class-07/README.md) | [12: OAuth](./class-12/README.md) | [17: TCP Protocol](./class-17/README.md) |
 | [03: Async](./class-03/README.md)               | [08: REST & Data Modeling](./class-08/README.md) | [13: Bearer Auth](./class-13/README.md) | [18: Socket.io](./class-18/README.md) |
 | [04: Data Modeling](./class-04/README.md)       | [09: API Server](./class-09/README.md) | [14: RBAC / ACL](./class-14/README.md) | [19: Socket.io](./class-19/README.md) |
