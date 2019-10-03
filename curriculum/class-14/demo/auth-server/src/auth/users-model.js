@@ -4,12 +4,42 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
+// Make sure Roles schema is loaded first
+require('./roles-model');
+
 const users = new mongoose.Schema({
   username: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   email: {type: String},
   role: {type: String, required:true, default:'user', enum:['admin','editor','user'] },
+}, {
+  toObject: { virtuals: true },
+  toJSON: { virtuals: true },
 });
+
+users.virtual('acl', {
+  ref: 'roles',
+  localField: 'role',
+  foreignField: 'role',
+  justOne: true,
+});
+
+users.pre('findOne', function() {
+  try {
+    this.populate('acl');
+  } catch(err) {
+    console.error(err);
+  }
+})
+
+users.post('save', function() {
+  try {
+    this.populate('acl');
+    return this.execPopulate();
+  } catch(err) {
+    console.error(err);
+  }
+})
 
 users.pre('save', async function() {
   if (this.isModified('password'))
@@ -39,6 +69,10 @@ users.statics.authenticateBasic = function(auth) {
   let query = {username:auth.username};
   return this.findOne(query)
     .then(user => user && user.comparePassword(auth.password))
+    .then(user => {
+      console.log(user);
+      return user;
+    })
     .catch(console.error);
 };
 

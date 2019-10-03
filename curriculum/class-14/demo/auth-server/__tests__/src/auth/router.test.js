@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const server = require('../../../src/app.js').server;
 const supergoose = require('../../supergoose.js');
 let User = require('../../../src/auth/users-model');
+let Role = require('../../../src/auth/roles-model');
 
 const mockRequest = supergoose(server);
 
@@ -14,7 +15,23 @@ let users = {
   user: {username: 'user', password: 'password', role: 'user'},
 };
 
+let roles = {
+  admin: ['create','read','update','delete'],
+  editor: ['create','read','update'],
+  user: ['read'],
+};
+
 describe('Auth Router', () => {
+  beforeAll(() => {
+    return Promise.all(
+      Object.keys(roles).map(role => {
+        return new Role({
+          role,
+          capabilities: roles[role],
+        }).save();
+      })
+    );
+  });
 
   describe.each(
     Object.keys(users).map(key => [key])
@@ -32,7 +49,7 @@ describe('Auth Router', () => {
           id = token.id;
           encodedToken = results.text;
           expect(token.id).toBeDefined();
-          expect(token.capabilities).toBeDefined();
+          expect(token.capabilities).toEqual(roles[users[userType].role])
         });
     });
 
@@ -44,7 +61,7 @@ describe('Auth Router', () => {
         .then(results => {
           var token = jwt.decode(results.text);
           expect(token.id).toEqual(id);
-          expect(token.capabilities).toBeDefined();
+          expect(token.capabilities).toEqual(roles[users[userType].role])
 
           savedToken = results.text;
         });
@@ -59,9 +76,10 @@ describe('Auth Router', () => {
         .set('Authorization', `Bearer ${savedToken}`)
         .expect(200);
 
+        console.log(response.text);
       var token = jwt.decode(response.text);
       expect(token.id).toEqual(id);
-      expect(token.capabilities).toBeDefined();
+      expect(token.capabilities).toEqual(roles[users[userType].role])
     })
 
     it('cannot sign in with bearer token after password is changed', async () => {
