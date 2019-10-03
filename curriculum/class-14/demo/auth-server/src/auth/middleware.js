@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken');
 const User = require('./users-model.js');
 const usedTokens = [];
 
-module.exports = (req, res, next) => {
+module.exports = () =>
+  (req, res, next) => {
 
   try {
 

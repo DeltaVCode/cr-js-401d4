@@ -19,12 +19,12 @@ authRouter.post('/signup', (req, res, next) => {
     }).catch(next);
 });
 
-authRouter.get('/signin', auth, (req, res, next) => {
+authRouter.get('/signin', auth(), (req, res, next) => {
   res.cookie('auth', req.token);
   res.send(req.token);
 });
 
-authRouter.post('/key', auth, (req, res) => {
+authRouter.post('/key', auth(), (req, res) => {
   res.send(req.user.generateToken('key'));
 });
 

@@ -38,7 +38,7 @@ describe('Auth Middleware', () => {
       };
       let res = { set: () => {}};
       let next = jest.fn();
-      let middleware = auth;
+      let middleware = auth();
 
       return middleware(req, res, next)
         .then(() => {
@@ -56,7 +56,7 @@ describe('Auth Middleware', () => {
       };
       let res = {};
       let next = jest.fn();
-      let middleware = auth;
+      let middleware = auth();
 
       return middleware(req,res,next)
         .then( () => {
