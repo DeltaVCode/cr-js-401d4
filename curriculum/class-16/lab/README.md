@@ -43,7 +43,8 @@ The task for today is to refactor the application to use events to surface error
 * Write tests around all of your units
   * File Read, File Save, Uppercase
   * Mock the fs module methods so that your tests don't use actual files
-* Test event handlers (not events themselves)
+* Test event handlers
+* Use spies to ensure events are emitted
 * Use spies to help testing your logger methods (assert that console.log was called right)
 
 
