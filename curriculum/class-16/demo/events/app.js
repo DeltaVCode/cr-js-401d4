@@ -6,11 +6,7 @@ require('./cache-invalidator');
 
 console.log('App is listening!');
 
-let nextId = 1;
-function saveToDb(document) {
-  let saved = { ... document, id: nextId++ };
-  hub.emit('save', saved);
-}
+const { saveToDb } = require('./db');
 
 saveToDb({ name: 'Keith' });
 saveToDb({ name: 'Craig' });
