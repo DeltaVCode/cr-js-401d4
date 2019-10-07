@@ -21,7 +21,7 @@ The task for today is to refactor the application to use events to surface error
   * Convert it's contents to upper case
   * Write it back to the file system
 * Following the write operation, report back to the user (console.log) the status
-* Any and all errors must be thrown
+* Any and all errors must be logged
 
 ### Implementation Details
 * Ensure that every function has JSDoc Notation
