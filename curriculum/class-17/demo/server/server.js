@@ -30,5 +30,5 @@ server.on('connection', socket => {
 });
 
 function dataHandler(buffer) {
-  console.log(this.id, buffer);
+  console.log(this.id, buffer.toString());
 }
