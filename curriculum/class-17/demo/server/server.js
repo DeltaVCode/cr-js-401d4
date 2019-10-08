@@ -19,6 +19,10 @@ server.on('connection', socket => {
 
   console.log(`${id} connected! ${Object.keys(socketPool).length} total.`);
 
+  for(let socketId in socketPool) {
+    socketPool[socketId].write(`${id} connected!\r\n`);
+  }
+
   socket.on('data', dataHandler);
   socket.on('error', err => {
     console.error(err);
@@ -30,5 +34,12 @@ server.on('connection', socket => {
 });
 
 function dataHandler(buffer) {
-  console.log(this.id, buffer.toString());
+  let id = this.id;
+  console.log(id, buffer.toString());
+
+  for(let socketId in socketPool) {
+    if (socketId === id) continue;
+
+    socketPool[socketId].write(`${id}:  ${buffer.toString()}\r\n`);
+  }
 }
