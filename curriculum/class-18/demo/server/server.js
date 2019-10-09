@@ -1,45 +1,32 @@
 'use strict';
 
-const net = require('net');
+const socketIO = require('socket.io'); // server factory
 const uuid = require('uuid');
 
-const PORT = process.env.PORT || 3001;
-const server = net.createServer();
-
-server.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
-
-const socketPool = {};
+const PORT = process.env.PORT || 3000; // HTTP
+const server = socketIO(PORT);
+console.log(`Listening on port ${PORT}`);
 
 server.on('connection', socket => {
-  const id = uuid();
-  socket.id = id;
-  socketPool[id] = socket;
+  console.log(`connected!`, socket.id);
 
-  console.log(`${id} connected! ${Object.keys(socketPool).length} total.`);
-
-  for(let socketId in socketPool) {
-    socketPool[socketId].write(`${id} connected!\r\n`);
-  }
-
-  socket.on('data', dataHandler);
-  socket.on('error', err => {
-    console.error(err);
-  });
-  socket.on('close', () => {
-    console.log(`Closing time for ${id}! ${Object.keys(socketPool).length} left.`);
-    delete socketPool[id];
+  socket.on('send-chat', data => {
+    server.emit('chat', data);
   });
 });
 
-function dataHandler(buffer) {
-  let id = this.id;
-  console.log(id, buffer.toString());
+setInterval(() => {
+  let payload = uuid();
+  console.log('chat', payload);
+  server.emit('chat', payload);
+}, 2500);
 
-  for(let socketId in socketPool) {
-    if (socketId === id) continue;
 
-    socketPool[socketId].write(`${id}:  ${buffer.toString()}\r\n`);
-  }
-}
+const dbServer = server.of('/database');
+dbServer.on('connection', socket => {
+  console.log('DB connection', socket.id);
+
+  socket.on('save', payload => {
+    console.log('received save', payload);
+  });
+});

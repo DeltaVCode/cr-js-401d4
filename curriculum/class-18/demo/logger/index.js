@@ -1,16 +1,10 @@
-const net = require('net');
-const client = new net.Socket();
+const socketIoClient = require('socket.io-client');
 
-const PORT = process.env.PORT || 3001;
+const URL = process.env.URL || 'http://localhost:3000';
 
-client.connect(PORT, 'localhost', () => {
-  console.log(`Connected on ${PORT}`);
-});
+const client = socketIoClient.connect(URL);
+console.log(`Connected on ${URL}`);
 
-client.on('data', data => {
-  console.log('LOG', data.toString());
-});
-
-client.on('close', () => {
-  console.log('Connection closed');
+client.on('chat', data => {
+  console.log('CHAT', data);
 });

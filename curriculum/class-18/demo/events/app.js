@@ -4,7 +4,7 @@ const hub = require('./hub');
 const uuid = require('uuid');
 
 require('./logger');
-require('./network-logger');
+require('./socket-io-logger');
 require('./cache-invalidator');
 
 console.log('App is listening!');
