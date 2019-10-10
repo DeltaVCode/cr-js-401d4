@@ -1,10 +1,21 @@
-const socketIoClient = require('socket.io-client');
 
-const URL = process.env.URL || 'http://localhost:3000';
+const Q = require('@nmq/q/client');
 
-const client = socketIoClient.connect(URL);
-console.log(`Connected on ${URL}`);
+const db = new Q('database');
+const net = new Q('network');
 
-client.on('chat', data => {
-  console.log('CHAT', data);
+db.subscribe('update', payload => {
+  console.log('update happened!', payload);
+});
+
+db.subscribe('delete', payload => {
+  console.log('delete happened!', payload);
+});
+
+db.subscribe('create', payload => {
+  console.log('create happened!', payload);
+});
+
+net.subscribe('attack', payload => {
+  console.warn('WE ARE UNDER ATTACK', payload);
 });

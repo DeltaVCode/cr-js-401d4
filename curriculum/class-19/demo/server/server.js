@@ -1,32 +1,15 @@
 'use strict';
 
-const socketIO = require('socket.io'); // server factory
-const uuid = require('uuid');
+const Q = require('@nmq/q/server');
+Q.start();
 
-const PORT = process.env.PORT || 3000; // HTTP
-const server = socketIO(PORT);
-console.log(`Listening on port ${PORT}`);
+const db = new Q('database');
+db.monitorEvent('create');
+db.monitorEvent('read');
+db.monitorEvent('update');
+db.monitorEvent('delete');
 
-server.on('connection', socket => {
-  console.log(`connected!`, socket.id);
-
-  socket.on('send-chat', data => {
-    server.emit('chat', data);
-  });
-});
-
-setInterval(() => {
-  let payload = uuid();
-  console.log('chat', payload);
-  server.emit('chat', payload);
-}, 2500);
-
-
-const dbServer = server.of('/database');
-dbServer.on('connection', socket => {
-  console.log('DB connection', socket.id);
-
-  socket.on('save', payload => {
-    console.log('received save', payload);
-  });
-});
+const network = new Q('network');
+network.monitorEvent('connect');
+network.monitorEvent('attack');
+network.monitorEvent('no-service');

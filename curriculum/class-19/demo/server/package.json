@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nmq/q": "^1.0.5",
     "socket.io": "^2.3.0",
     "uuid": "^3.3.3"
   }
