@@ -6,6 +6,7 @@
  */
 
 const cwd = process.cwd();
+require('./q-listener');
 
 // 3rd Party Resources
 const express = require('express');
