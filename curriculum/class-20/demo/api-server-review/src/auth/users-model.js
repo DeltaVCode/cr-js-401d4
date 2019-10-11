@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
 const users = new mongoose.Schema({
@@ -10,6 +11,12 @@ const users = new mongoose.Schema({
     default: 'user',
     enum: ['admin','editor','user'],
   },
+});
+
+users.pre('save', async function() {
+  if (this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
 });
 
 module.exports = mongoose.model('users', users);
