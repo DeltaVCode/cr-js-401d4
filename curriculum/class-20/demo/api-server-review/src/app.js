@@ -16,6 +16,7 @@ const morgan = require('morgan');
 // Esoteric Resources
 const errorHandler = require( `${cwd}/src/middleware/500.js`);
 const notFound = require( `${cwd}/src/middleware/404.js` );
+const authRouter = require('./auth/router');
 const v1Router = require( `${cwd}/src/api/v1.js` );
 const swagger = require(`${cwd}/src/api/swagger.js`);
 
@@ -33,6 +34,7 @@ app.use(express.urlencoded({extended:true}));
 app.use('/docs', express.static('docs'));
 
 // Routes
+app.use(authRouter);
 app.use(v1Router);
 
 // Catchalls
