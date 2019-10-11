@@ -7,6 +7,8 @@ module.exports = () =>
       switch(authType.toLowerCase()) {
         case 'basic':
           return await _authBasic(authString);
+        case 'bearer':
+          return await _authBearer(authString);
         default:
           return await _authError();
       }
@@ -21,6 +23,11 @@ module.exports = () =>
       let [username,password] = decoded.split(':');
 
       let user = await User.authenticateBasic({ username, password });
+      _authenticate(user);
+    }
+
+    async function _authBearer(token) {
+      let user = await User.authenticateToken(token);
       _authenticate(user);
     }
 
