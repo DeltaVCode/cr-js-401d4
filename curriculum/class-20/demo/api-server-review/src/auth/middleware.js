@@ -27,6 +27,7 @@ module.exports = () =>
     async function _authenticate(user) {
       if (user) {
         req.user = user;
+        req.token = user.generateToken();
 
         next();
       } else {
