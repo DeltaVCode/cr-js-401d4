@@ -37,10 +37,10 @@ Component based UI systems like `React`, `Angular`, `Vue` and the like all opera
 * We pay attention to `state` and react as it changes.
 
 #### COMPONENTS!
-<img src="components.png" width="400">
+<img src="assets/components.png" width="400">
 
 #### STATE!
-<img src="state.jpg" width="400">
+<img src="assets/state.jpg" width="400">
 
 
 ### React
