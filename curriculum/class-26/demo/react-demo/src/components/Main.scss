@@ -1,3 +1,14 @@
 main {
   background-color: pink;
 }
+
+main .zero {
+  font-weight: normal;
+  font-style: italic;
+  color: gray;
+}
+
+main .positive {
+  font-weight: bold;
+  color: blue;
+}

@@ -46,10 +46,18 @@ class Main extends React.Component {
 
   render() {
     console.log('RENDER! State:', this.state);
+    let countClassName = this.state.count === 0 ? 'zero' : 'positive';
+    let countStyle = {
+      color: `rgb(0,0,${Math.min(this.state.count*5,255)})`
+    };
+    console.log(countStyle);
+
     return (
       <main>
         <h3>{this.state.words}</h3>
-        <h4>Count: {this.state.count}</h4>
+        <h4 className={countClassName} style={countStyle}>
+          Count: {this.state.count}
+        </h4>
         <input onChange={this.handleWords} />
         <button onClick={this.handleClick}>Click Me</button>
       </main>
