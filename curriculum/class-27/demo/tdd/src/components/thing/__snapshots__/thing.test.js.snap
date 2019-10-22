@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Thing /> renders consistently 1`] = `
+<section
+  className="thing"
+>
+  <span
+    className="flag"
+  >
+    True
+  </span>
+  <button
+    onClick={[Function]}
+  >
+    Toggle!
+  </button>
+</section>
+`;

@@ -1,4 +1,5 @@
 import React from 'react';
+import renderer from 'react-test-renderer';
 import Thing from './thing';
 
 describe('<Thing />', () => {
@@ -34,5 +35,11 @@ describe('<Thing />', () => {
     // Assert
     expect(app.state('flag')).toBe(true);
     expect(app.find('span.flag').text()).toBe('True');
+  });
+
+  it('renders consistently', () => {
+    const tree = renderer.create(<Thing />).toJSON();
+    // console.log(tree);
+    expect(tree).toMatchSnapshot();
   });
 });
