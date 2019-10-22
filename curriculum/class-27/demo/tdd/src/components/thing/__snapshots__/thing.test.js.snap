@@ -12,7 +12,7 @@ exports[`<Thing /> renders consistently 1`] = `
   <button
     onClick={[Function]}
   >
-    Toggle!
+    Toggle
   </button>
 </section>
 `;

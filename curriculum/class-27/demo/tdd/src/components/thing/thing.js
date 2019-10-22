@@ -23,7 +23,7 @@ class Thing extends React.Component {
     return (
       <section className="thing">
         <span className="flag">{this.state.flag ? 'True' : 'False'}</span>
-        <button onClick={this.handleClick}>Toggle!</button>
+        <button onClick={this.handleClick}>Toggle</button>
       </section>
     );
   }

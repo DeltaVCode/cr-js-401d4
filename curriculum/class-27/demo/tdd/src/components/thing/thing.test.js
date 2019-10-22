@@ -20,7 +20,7 @@ describe('<Thing />', () => {
     let app = shallow(<Thing />);
     let button = app.find('button');
     expect(button.exists()).toBe(true);
-    expect(button.text()).toBe('Toggle!');
+    expect(button.text()).toBe('Toggle');
 
     // Act
     button.simulate('click');
