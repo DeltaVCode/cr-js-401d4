@@ -1,0 +1,3 @@
+[submodule "curriculum/class-27/demo/deployment"]
+	path = curriculum/class-27/demo/deployment
+	url = https://github.com/dahlbyk-demo/cr-js-deltav-401d4-demo27.git
