@@ -9,13 +9,21 @@ class App extends React.Component {
     super(props);
     this.state = {
       count: undefined,
-      results: [],
+      people: [],
     };
   }
 
-  handleFormData = (count, results) => {
-    console.log('handleFormData', results);
-    this.setState({ count, results });
+  handleFormData = (count, people) => {
+    console.log('handleFormData', people);
+    this.setState({ count, people });
+
+    setTimeout(() => {
+      let sorted = [...people].sort((a,b) => a.height - b.height);
+      console.log(people);
+      this.setState({
+        people: sorted,
+      });
+    }, 2000);
   }
 
   render() {
@@ -33,6 +41,16 @@ class App extends React.Component {
             <p>This is a lot of fun.</p>
         </Form>
         <ul>
+          {
+            this.state.people
+              .map((person, i) =>
+                <li key={person.url /* or i sometimes works */}>
+                  <a href={person.url}>
+                    {person.name}
+                  </a>
+                </li>
+              )
+          }
         </ul>
       </>
     );
