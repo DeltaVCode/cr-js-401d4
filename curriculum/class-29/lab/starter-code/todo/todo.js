@@ -40,7 +40,11 @@ function handleSubmit(e) {
   e.preventDefault();
   // WRONG: todoList.push( new Item(newItem.value) );
 
-  todoList = todoList.concat([new Item(newItem.value)]);
+  todoList = todoList.concat(
+    [
+      new Item(newItem.value)
+    ]
+  );
 
   e.target.reset();
   drawItems();
