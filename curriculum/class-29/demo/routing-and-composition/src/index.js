@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import { BrowserRouter } from 'react-router-dom';
+
 import App from "./components/app.js";
 
 import "./styles.css";
@@ -8,7 +10,9 @@ import "./styles.css";
 class Main extends React.Component {
   render() {
     return (
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     );
   }
 }
