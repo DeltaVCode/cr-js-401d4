@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Form from './form';
 import Title from './title';
 
 class Message extends React.Component {
@@ -17,6 +18,8 @@ class Message extends React.Component {
         <Title text={this.props.title} />
         <h2>{this.props.text}</h2>
         <h3>{this.state.words}</h3>
+        <Form do={this.props.action} />
+        <h4>{this.props.input}</h4>
       </>
     );
   }
