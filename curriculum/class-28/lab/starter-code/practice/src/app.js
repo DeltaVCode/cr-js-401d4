@@ -5,10 +5,11 @@ import './styles.css';
 import Message from './components/message.js';
 
 class App extends React.Component {
-
   render() {
     return (
-      <Message/>
+      <Message
+        text="My amazing app"
+        />
     );
   }
 }
