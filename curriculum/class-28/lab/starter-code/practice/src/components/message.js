@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Title from './title';
+
 class Message extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +14,7 @@ class Message extends React.Component {
   render() {
     return (
       <>
+        <Title text={this.props.title} />
         <h2>{this.props.text}</h2>
         <h3>{this.state.words}</h3>
       </>
