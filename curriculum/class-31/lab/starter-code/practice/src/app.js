@@ -44,6 +44,7 @@ export default function App() {
       <form onSubmit={_handleSubmit}>
         <input onChange={_handleChange} />
       </form>
+      <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
     </>
   );
 }
