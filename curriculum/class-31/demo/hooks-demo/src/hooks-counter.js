@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function HooksCounter(props) {
   // Only props are from <Route />
@@ -13,6 +13,26 @@ export default function HooksCounter(props) {
 
   let initialRandom = Math.random();
   let [random, setRandom] = useState(initialRandom);
+
+  useEffect(() => {
+    console.log('componentDidMount-ish');
+
+    // Returning a function inside useEffect callback
+    // gives the function to call before unmount
+    return () => {
+      console.log('componentWillUnmount');
+    };
+  }, []); // Empty dependencies = run once
+
+  // Called on every render
+  useEffect(() => {
+    console.log('componentDidUpdate-ish');
+  });
+
+  useEffect(() => {
+    console.log('Updating title');
+    document.title = `setState! ${count}`;
+  }, [count]);
 
   return (
     <div>
