@@ -31,12 +31,12 @@ export default function HooksCounter(props) {
 
   useEffect(() => {
     console.log('Updating title');
-    document.title = `setState! ${count}`;
+    document.title = `useState! ${count}`;
   }, [count]);
 
   return (
     <div>
-      <h2><code>setState</code> Count: {count}</h2>
+      <h2><code>useState</code> Count: {count}</h2>
       <button onClick={increment}>
         Update Counter
       </button>
