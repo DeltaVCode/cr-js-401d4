@@ -20,6 +20,10 @@ export default function App() {
   const [input, setInput] = useState('');
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  useEffect(() => {
+    document.title = state.words;
+  }, [state.words]);
+
   return (
     <>
       <div>My App</div>
