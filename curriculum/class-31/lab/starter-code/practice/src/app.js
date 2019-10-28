@@ -32,11 +32,17 @@ export default function App() {
     });
   }
 
+  function _handleChange(e) {
+    e.preventDefault();
+    setInput(e.target.value);
+  }
+
   return (
     <>
       <div>My App</div>
       <div>Words: {state.words}</div>
       <form onSubmit={_handleSubmit}>
+        <input onChange={_handleChange} />
       </form>
     </>
   );
