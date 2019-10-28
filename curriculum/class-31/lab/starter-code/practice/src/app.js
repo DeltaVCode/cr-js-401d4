@@ -24,10 +24,20 @@ export default function App() {
     document.title = state.words;
   }, [state.words]);
 
+  function _handleSubmit(e) {
+    e.preventDefault();
+    dispatch({
+      type: 'enter',
+      payload: input,
+    });
+  }
+
   return (
     <>
       <div>My App</div>
       <div>Words: {state.words}</div>
+      <form onSubmit={_handleSubmit}>
+      </form>
     </>
   );
 }
