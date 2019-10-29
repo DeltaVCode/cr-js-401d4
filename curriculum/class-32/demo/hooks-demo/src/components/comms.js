@@ -12,17 +12,21 @@ function SendMessage(props) {
 }
 
 function Comms() {
-  let [message, setMessage] = useState();
+  let [messages, setMessages] = useState([]);
 
-  let [send] = usePostMessage(msg => setMessage(msg));
+  let [send] = usePostMessage(msg => setMessages([msg, ...messages]));
 
   return (
     <>
-      <h1>Message: {message}</h1>
+      <h1>Messages:</h1>
       <button onClick={() => send('Hello, world!')}>Say Hello</button>
 
       <SendMessage message='goodbye' />
       <SendMessage message='hooks are confusing' />
+
+      <ul>
+        {messages.map(message => <li>{message}</li>)}
+      </ul>
     </>
   );
 }
