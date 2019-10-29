@@ -1,5 +1,4 @@
 import React from 'react';
-import uuid from 'uuid/v4';
 import { When } from '../if';
 import Modal from '../modal';
 import Header from './header';
@@ -14,37 +13,16 @@ class ToDo extends React.Component {
     super(props);
     this.state = {
       todoList: [],
-      item: {},
       showDetails: false,
       details: {},
     };
   }
 
-  handleInputChange = e => {
-    let { name, value } = e.target;
-    this.setState(state => ({
-      item: {...state.item, [name]: value},
-    }));
-  };
-
-  handleSubmit = (e) => {
-    this.props.handleSubmit(this.state.item);
-  };
-
-  addItem = (e) => {
-
-    e.preventDefault();
-    e.target.reset();
-
-    const defaults = { _id: uuid(), complete:false };
-    const item = Object.assign({}, this.state.item, defaults);
-
+  addItem = item => {
     this.setState(state => ({
       todoList: [...state.todoList, item],
-      item: {},
     }));
-
-  };
+  }
 
   deleteItem = id => {
 
@@ -91,7 +69,7 @@ class ToDo extends React.Component {
         <Header todoList={this.state.todoList} />
 
         <section className="todo">
-          <Form addItem={this.addItem} handleInputChange={this.handleInputChange} />
+          <Form addItem={this.addItem} />
 
           <div>
             <ul>
