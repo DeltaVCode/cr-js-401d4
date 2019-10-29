@@ -5,6 +5,8 @@ import Comms from './components/comms.js';
 function App() {
   return (
     <>
+      <Fish fish="dolphin" />
+      <Comms />
     </>
   );
 }
