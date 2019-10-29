@@ -2,6 +2,7 @@ import React from 'react';
 import uuid from 'uuid/v4';
 import { When } from '../if';
 import Modal from '../modal';
+import Header from './header';
 
 import './todo.scss';
 
@@ -82,16 +83,9 @@ class ToDo extends React.Component {
   }
 
   render() {
-
     return (
       <>
-        <header>
-          <h2>
-            There are
-            {this.state.todoList.filter( item => !item.complete ).length}
-            Items To Complete
-          </h2>
-        </header>
+        <Header todoList={this.state.todoList} />
 
         <section className="todo">
 
