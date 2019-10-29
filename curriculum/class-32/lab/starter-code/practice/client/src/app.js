@@ -1,17 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import useForm from './hooks/form';
 import useSocket from './hooks/socket';
-
-import Q from '@nmq/q/client';
-
-// Connect outside of the render cycle ...
-const queue = new Q('deeds');
+import useQ from './hooks/q';
 
 const App = (props) => {
   const [socketPublish, socketSubscribe] = useSocket();
+  const [qPublish, qSubscribe] = useQ();
 
   const [values, handleChange, handleSubmit] = useForm(values => {
-    Q.publish('deeds', 'work', values);
+    qPublish('deeds', 'work', values);
     socketPublish('words', values);
   });
 
@@ -19,13 +16,9 @@ const App = (props) => {
   const [socketMessage, setSocketMessage] = useState({});
 
   useEffect( () => {
-    queue.subscribe('work', message => {
-      setQueueMessage(message);
-    });
-
+    qSubscribe('work', setQueueMessage);
     socketSubscribe('incoming', setSocketMessage);
   }, []);
-
 
   return (
     <>
