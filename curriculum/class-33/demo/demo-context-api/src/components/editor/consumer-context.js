@@ -9,6 +9,7 @@ class Content extends React.Component {
           {context => (
             <>
               <h1>{context.title}</h1>
+              <h3>{context.twitter}</h3>
               <p>
                 <input
                   onChange={e => context.setTitle(e.target.value)}

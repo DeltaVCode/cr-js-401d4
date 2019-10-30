@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import uuid from 'uuid';
 import { SettingsContext } from '../settings/site-context.js';
+import SettingsForm from './settings-form';
 
 const SetRandomTitle = () => {
   const context = useContext(SettingsContext);
@@ -17,11 +18,7 @@ const Content = (props) => {
     <section>
       <h1>{context.title}</h1>
       <SetRandomTitle />
-      <p>
-        <input
-          onChange={e => context.setTitle(e.target.value)}
-          value={context.title} />
-      </p>
+      <SettingsForm />
     </section>
   );
 };
