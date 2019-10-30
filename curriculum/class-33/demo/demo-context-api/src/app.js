@@ -1,14 +1,14 @@
 import React from 'react';
 
-import SettingsContext from './components/settings/site-context.js';
 import Main from './main.js';
+import SettingsProvider from './components/settings/site-context';
 
 export default class App extends React.Component {
   render() {
     return (
-      <SettingsContext>
+      <SettingsProvider>
         <Main />
-      </SettingsContext>
+      </SettingsProvider>
     );
   }
 }
