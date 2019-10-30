@@ -5,7 +5,18 @@ class Content extends React.Component {
   render() {
     return (
       <section>
-        <h2>Consumer</h2>
+        <SettingsContext.Consumer>
+          {context => (
+            <>
+              <h1>{context.title}</h1>
+              <p>
+                <input
+                  onChange={e => context.setTitle(e.target.value)}
+                  value={context.title} />
+              </p>
+            </>
+          )}
+        </SettingsContext.Consumer>
       </section>
     );
   }

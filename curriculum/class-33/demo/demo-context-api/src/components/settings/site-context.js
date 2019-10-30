@@ -8,7 +8,12 @@ class SettingsProvider extends React.Component {
 
     this.state = { 
       title: 'DeltaV Context Demo',
+      setTitle: this.setTitle,
     };
+  }
+
+  setTitle = (title) => {
+    this.setState({ title });
   }
 
   render() {
