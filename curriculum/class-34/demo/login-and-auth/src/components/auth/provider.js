@@ -1,4 +1,5 @@
 import React from 'react';
+import cookie from 'react-cookies';
 import jwt from 'jsonwebtoken';
 
 import LoginContext from './context';
@@ -51,6 +52,15 @@ export default class LoginProvider extends React.Component {
 
   setLoginState = (token, user) => {
     this.setState({ token, user });
+    if (token)
+      cookie.save('auth', token);
+    else
+      cookie.remove('auth');
+  }
+
+  componentDidMount() {
+    const cookieToken = cookie.load('auth');
+    this.validateToken(cookieToken);
   }
 
   render() {
