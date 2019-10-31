@@ -3,6 +3,7 @@ import React from 'react';
 import LoginProvider from './components/auth/provider';
 import Login from './components/auth/login';
 import Auth from './components/auth/auth';
+import Button from './components/auth/auth-button';
 
 class App extends React.Component {
   render() {
@@ -27,6 +28,18 @@ class App extends React.Component {
           </Auth>
           <Auth capability="delete">
             <li>Deleters can see this</li>
+          </Auth>
+          <Auth capability="update">
+            <li>
+              <Button
+                onClick={() => console.log('Delete!')}
+                style={{ border: '5px solid green' }}
+                capability="delete"
+                disabledMessage="Delete permission is required"
+                >
+                Delete
+              </Button>
+            </li>
           </Auth>
         </ul>
       </LoginProvider>
