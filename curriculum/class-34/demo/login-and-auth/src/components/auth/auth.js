@@ -1,23 +1,17 @@
-import React from 'react';
+import useAuth from './hook';
 
-import LoginContext from './context';
+function Auth(props) {
+  let { user } = useAuth();
+  let { capability } = props;
 
-class Auth extends React.Component {
-  static contextType = LoginContext;
+  if (!user)
+    return null;
 
-  render() {
-    let { user } = this.context;
-    let { capability } = this.props;
+  if (capability &&
+    !(user.capabilities && user.capabilities.includes(capability)))
+    return null;
 
-    if (!user)
-      return null;
-
-    if (capability &&
-      !(user.capabilities && user.capabilities.includes(capability)))
-      return null;
-
-    return this.props.children;
-  }
+  return props.children;
 }
 
 export default Auth;
