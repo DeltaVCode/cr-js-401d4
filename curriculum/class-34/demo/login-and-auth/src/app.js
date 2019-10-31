@@ -35,7 +35,7 @@ class App extends React.Component {
                 onClick={() => console.log('Delete!')}
                 style={{ border: '5px solid green' }}
                 capability="delete"
-                disabledMessage="Delete permission is required"
+                disabledTitle="Delete permission is required"
                 >
                 Delete
               </Button>

@@ -11,7 +11,7 @@ export default class AuthButton extends React.Component {
     let {
       children,
       capability,
-      disabledMessage,
+      disabledTitle,
       ...otherProps
     } = this.props;
     console.log(otherProps);
@@ -19,7 +19,7 @@ export default class AuthButton extends React.Component {
     if (!user ||
       !(user.capabilities && user.capabilities.includes(capability)))
       return (
-        <button {...otherProps} disabled title={disabledMessage}>
+        <button {...otherProps} disabled title={disabledTitle}>
           {children}
         </button>
       );
