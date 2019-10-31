@@ -10,9 +10,24 @@ export default class Login extends React.Component {
 
     let { username, password } = e.target;
     this.context.login(username.value, password.value);
+    e.target.reset();
+  }
+
+  logout = e => {
+    e.preventDefault();
+    this.context.logout();
   }
 
   render() {
+    if (this.context.user) {
+      return (
+        <p>
+          Welcome back!
+          <button onClick={this.logout}>Log Out</button>
+        </p>
+      )
+    }
+
     return (
       <form onSubmit={this.handleSubmit}>
         <input placeholder="username"

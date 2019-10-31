@@ -13,6 +13,7 @@ export default class LoginProvider extends React.Component {
       token: null,
       user: null,
       login: this.login,
+      logout: this.logout,
     };
   }
 
@@ -39,9 +40,13 @@ export default class LoginProvider extends React.Component {
       this.setLoginState(token, user);
     }
     catch(e) {
-      this.setLoginState(null, null);
+      this.logout();
       console.error(e);
     }
+  }
+
+  logout = () => {
+    this.setLoginState(null, null);
   }
 
   setLoginState = (token, user) => {
