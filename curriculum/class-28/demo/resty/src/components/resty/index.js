@@ -4,11 +4,12 @@ import React from 'react';
 import superagent from 'superagent';
 import ReactJson from 'react-json-view';
 
+import Form from './form';
+
 class RESTy extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: '',
       method: 'get',
       header: {},
       body: {},
@@ -17,15 +18,8 @@ class RESTy extends React.Component {
     };
   }
 
-  handleChange = event => {
-    let prop = event.target.name;
-    let value = event.target.value;
-    this.setState({ [prop]: value });
-  };
-
-  callAPI = event => {
-    event.preventDefault();
-    superagent('get', this.state.url)
+  callAPI = url => {
+    superagent('get', url)
       .set('Content-Type', 'application/json')
       .send(this.state.requestBody)
       .then(response => {
@@ -44,21 +38,9 @@ class RESTy extends React.Component {
     return (
       <main>
         <section className="deck">
-          <form onSubmit={this.callAPI}>
-            <section id="url-entry">
-              <input
-                type="text"
-                className="wide"
-                name="url"
-                placeholder="URL"
-                value={this.state.url}
-                onChange={this.handleChange}
-              />
-              <label>
-                <button type="submit">Go!</button>
-              </label>
-            </section>
-          </form>
+          <Form
+            onRequest={this.callAPI}
+            />
           <div id="json">
             <ReactJson
               name="Headers"
