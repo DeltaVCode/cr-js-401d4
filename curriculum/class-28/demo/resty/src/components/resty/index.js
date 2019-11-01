@@ -5,28 +5,14 @@ import superagent from 'superagent';
 import ReactJson from 'react-json-view';
 
 import Form from './form';
+import makeRequest from './api';
 
 function RESTy() {
   let [response, setResponse] = useState({});
 
   let callAPI = (method, url, body) => {
-    superagent(method, url)
-      .set('Content-Type', 'application/json')
-      .send(body)
-      .then(response => {
-        let header = response.header;
-        let body = response.body;
-        setResponse({
-          header, body,
-        });
-      })
-      .catch(e => {
-        let body = { error: e.message };
-        let header = {};
-        setResponse({
-          header, body,
-        });
-      });
+    makeRequest(method, url, body)
+      .then(setResponse);
   };
 
   return (
