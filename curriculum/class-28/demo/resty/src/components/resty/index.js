@@ -10,7 +10,6 @@ class RESTy extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      method: 'get',
       header: {},
       body: {},
       history: {},
@@ -18,10 +17,10 @@ class RESTy extends React.Component {
     };
   }
 
-  callAPI = url => {
-    superagent('get', url)
+  callAPI = (method, url, body) => {
+    superagent(method, url)
       .set('Content-Type', 'application/json')
-      .send(this.state.requestBody)
+      .send(body)
       .then(response => {
         let header = response.header;
         let body = response.body;

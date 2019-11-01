@@ -12,7 +12,7 @@ export default function RequestForm(props) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    onRequest(url);
+    onRequest('get', url, null);
   }
 
   return (
