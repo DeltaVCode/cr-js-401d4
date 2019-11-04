@@ -1,12 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default function ReduxCounter() {
-  function increment(){}
-  function dispatch(){}
+function ReduxCounter(props) {
+  console.log(props);
+  const { count, increment, dispatch } = props;
 
   return (
     <div>
-      <h2>Redux Count: {0}</h2>
+      <h2>Redux Count: {count}</h2>
       <button onClick={increment}>
         Increment Counter
       </button>
@@ -19,3 +20,22 @@ export default function ReduxCounter() {
     </div>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    count: state.counter.count,
+    polarity: state.counter.count > 0 ? 'positive' : 'zero'
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+    increment: () => dispatch({ type: 'increment' }),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ReduxCounter);
