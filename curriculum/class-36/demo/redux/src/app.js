@@ -4,10 +4,12 @@ import ClassCounter from './class-counter';
 import HooksCounter from './hooks-counter';
 import ReducerCounter from './reducer-counter';
 import ReduxCounter from './redux-counter';
+import Header from './header';
 
 function App() {
   return (
     <div>
+      <Header />
       <nav>
         <ul>
           <li><Link to="/"><code>this.state</code></Link></li>
