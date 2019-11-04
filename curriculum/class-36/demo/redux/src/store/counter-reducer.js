@@ -14,8 +14,30 @@ export function reducer(state = initialState, action = {}) {
       return { count: state.count - 1 };
     case RESET:
       return initialState;
+    case 'ADD':
+      return { count: state.count + action.payload };
     default:
       return state;
       // or throw Error(`${action.type} not found`)
   }
+}
+
+// Action Creators
+export function increment() {
+  return { type: INCREMENT };
+}
+
+export function decrement() {
+  return { type: DECREMENT };
+}
+
+export function reset() {
+  return { type: RESET };
+}
+
+export function add(number) {
+  return {
+    type: 'ADD',
+    payload: number,
+  };
 }

@@ -1,5 +1,5 @@
 import { initialState, reducer } from './counter-reducer';
-import { INCREMENT, DECREMENT, RESET } from './counter-reducer';
+import { increment, decrement, reset, add } from './counter-reducer';
 
 describe('Counter Reducer', () => {
   it('increments count', () => {
@@ -8,9 +8,7 @@ describe('Counter Reducer', () => {
       count: 2,
     };
     Object.freeze(state); // npm: deep-freeze
-    let action = {
-      type: INCREMENT,
-    };
+    let action = increment();
 
     // Act
     let nextState = reducer(state, action);
@@ -27,7 +25,7 @@ describe('Counter Reducer', () => {
     let state = { count: 3 }
     Object.freeze(state);
 
-    let res = reducer(state, { type: DECREMENT });
+    let res = reducer(state, decrement());
 
     expect(res).toEqual({ count: 2 });
   });
@@ -41,8 +39,17 @@ describe('Counter Reducer', () => {
     let state = { count: 7 };
     Object.freeze(state);
 
-    let res = reducer(state, { type: RESET });
+    let res = reducer(state, reset());
 
     expect(res).toEqual(initialState);
+  })
+
+  it('can add arbitrary value', () => {
+    let state = { count: 4 };
+    Object.freeze(state);
+
+    let res = reducer(state, add(7));
+
+    expect(res).toEqual({ count: 11 });
   })
 });
