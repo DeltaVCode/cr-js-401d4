@@ -52,4 +52,13 @@ describe('Counter Reducer', () => {
 
     expect(res).toEqual({ count: 11 });
   })
+
+  it('returns previous state for unknown action type', () => {
+    let state = { count: 5 };
+    Object.freeze(state);
+
+    let res = reducer(state, { type: 'FOO' });
+
+    expect(res).toBe(state);
+  });
 });

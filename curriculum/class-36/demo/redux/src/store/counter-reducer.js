@@ -18,7 +18,6 @@ export function reducer(state = initialState, action = {}) {
       return { count: state.count + action.payload };
     default:
       return state;
-      // or throw Error(`${action.type} not found`)
   }
 }
 
