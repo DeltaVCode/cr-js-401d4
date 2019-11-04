@@ -1,14 +1,18 @@
+export const INCREMENT = 'increment';
+export const DECREMENT = 'decrement';
+export const RESET = 'reset';
 
 export const initialState = { count: 0 };
 // state here is the current count
-export function reducer(state, action) {
+
+export function reducer(state = initialState, action = {}) {
   console.log('reducer', state, action);
   switch(action.type) {
-    case 'increment':
+    case INCREMENT:
       return { count: state.count + 1 };
-    case 'decrement':
+    case DECREMENT:
       return { count: state.count - 1 };
-    case 'reset':
+    case RESET:
       return initialState;
     default:
       return state;
