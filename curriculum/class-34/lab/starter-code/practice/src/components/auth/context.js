@@ -45,7 +45,7 @@ class LoginProvider extends React.Component {
 
   validateToken = token => {
     try {
-      let user = jwt.verify(token, process.env.REACT_APP_SECRET);
+      let user = jwt.decode(token);
       console.log('all good');
       this.setLoginState(true, token, user);
     }

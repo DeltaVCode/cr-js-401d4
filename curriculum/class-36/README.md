@@ -4,7 +4,7 @@
 
 * Manage state at an application level using a Redux Store
 * Understand the basic roles of Actions and Reducers
-* Implement the core Redux Boilerplating required to participate in a store-based state managed application
+* Implement the core Redux boilerplate code required to participate in a store-based state managed application
 
 ## Outline
 * :05 **Housekeeping/Recap**
