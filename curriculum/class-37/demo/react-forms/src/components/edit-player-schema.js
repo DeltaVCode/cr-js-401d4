@@ -2,6 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import Form from 'react-jsonschema-form';
+import schema from '../schema.json';
+
+const playerUiSchema = {
+  bats: { 'ui:widget': 'radio' },
+  throws: { 'ui:widget': 'radio' },
+  _id: { 'ui:widget': 'hidden' },
+  __v: { 'ui:widget': 'hidden' },
+}
+
 const EditPlayerSchema = (props) => {
   let player = props.player; // props.players[props.match.params.id];
   if (!player) {
@@ -11,10 +21,15 @@ const EditPlayerSchema = (props) => {
   }
 
   return (
-    <form>
+    <>
       <h2>Editing {player.name}</h2>
+      <Form
+        schema={schema}
+        uiSchema={playerUiSchema}
+        formData={player}
+      />
       <p><Link to="/">Go Home</Link></p>
-    </form>
+    </>
   );
 };
 
