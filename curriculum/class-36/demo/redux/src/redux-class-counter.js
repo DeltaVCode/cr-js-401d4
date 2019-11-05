@@ -2,27 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { add, increment, decrement, reset } from './store/counter-reducer';
 
-function ReduxCounter(props) {
-  console.log(props);
-  const { count, increment, decrement, reset, add7 } = props;
+class ReduxCounter extends React.Component {
+  render() {
+    console.log(this.props);
+    const { count, increment, decrement, reset, add7 } = this.props;
 
-  return (
-    <div>
-      <h2>Redux Count: {count}</h2>
-      <button onClick={add7}>
-        +7
-      </button>
-      <button onClick={increment}>
-        Increment Counter
-      </button>
-      <button onClick={decrement}>
-        Decrement Counter
-      </button>
-      <button onClick={reset}>
-        Reset Counter
-      </button>
-    </div>
-  );
+    return (
+      <div>
+        <h2>Redux Class Count: {count}</h2>
+        <button onClick={add7}>
+          +7
+        </button>
+        <button onClick={increment}>
+          Increment Counter
+        </button>
+        <button onClick={decrement}>
+          Decrement Counter
+        </button>
+        <button onClick={reset}>
+          Reset Counter
+        </button>
+      </div>
+    );
+  }
 }
 
 function mapStateToProps(state) {
