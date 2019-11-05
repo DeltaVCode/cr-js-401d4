@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Form from 'react-jsonschema-form';
 import schema from '../schema.json';
+import { actions } from '../store/players-reducer';
 
 const playerUiSchema = {
   bats: { 'ui:widget': 'radio' },
@@ -13,11 +14,19 @@ const playerUiSchema = {
 }
 
 const EditPlayerSchema = (props) => {
+  let id = parseInt(props.match.params.id, 10);
   let player = props.player; // props.players[props.match.params.id];
   if (!player) {
     return (
-      <strong>Player {props.match.params.id} not found!</strong>
+      <strong>Player {id} not found!</strong>
     );
+  }
+
+  function handleSubmit(submitData) {
+    // console.log(submitData);
+    props.savePlayer(id, submitData.formData);
+
+    props.history.push('/');
   }
 
   return (
@@ -27,6 +36,7 @@ const EditPlayerSchema = (props) => {
         schema={schema}
         uiSchema={playerUiSchema}
         formData={player}
+        onSubmit={handleSubmit}
       />
       <p><Link to="/">Go Home</Link></p>
     </>
@@ -38,5 +48,8 @@ export default connect(
     // players: state.players, // We don't need all the players, just one
 
     player: state.players[props.match.params.id],
+  }),
+  dispatch => ({
+    savePlayer: (id, record) => dispatch(actions.put(id, record)),
   })
 )(EditPlayerSchema);
