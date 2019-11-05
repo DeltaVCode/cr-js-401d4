@@ -4,6 +4,7 @@ import ClassCounter from './class-counter';
 import HooksCounter from './hooks-counter';
 import ReducerCounter from './reducer-counter';
 import ReduxCounter from './redux-counter';
+import ReduxClassCounter from './redux-class-counter';
 import Header from './header';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <li><Link to="/useState3"><code>useState &times;3</code></Link></li>
           <li><Link to="/useReducer"><code>useReducer</code></Link></li>
           <li><Link to="/redux">Redux</Link></li>
+          <li><Link to="/redux-class">Redux Class</Link></li>
         </ul>
       </nav>
       <Switch>
@@ -30,6 +32,7 @@ function App() {
         )} />
         <Route path="/useReducer" component={ReducerCounter} />
         <Route path="/redux" component={ReduxCounter} />
+        <Route path="/redux-class" component={ReduxClassCounter} />
         <Route component={ClassCounter} />
       </Switch>
     </div>
