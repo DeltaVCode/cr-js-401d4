@@ -1,14 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const PlayersList = (props) => (
-  <ul>
+  <table>
     {props.players.map((player, idx) => (
-      <li key={idx}>
-        {player.name}
-      </li>
+      <tr key={idx}>
+        <th>{player.name}</th>
+        <td><Link to={`/players/${idx}/edit`}>Edit</Link></td>
+      </tr>
     ))}
-  </ul>
+  </table>
 );
 
 export default connect(
