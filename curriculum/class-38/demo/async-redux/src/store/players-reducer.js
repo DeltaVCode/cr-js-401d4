@@ -9,26 +9,24 @@ export default (players = initialState, action = {}) => {
     case 'POST':
       return [...players, payload];
     case 'PUT':
-      return players.map((player, idx) => idx === payload.id ? payload.record : player);
+      return players.map(player => player._id === payload.id ? payload.record : player);
     case 'DELETE':
-      return players.filter((_, idx) => idx !== payload.id);
+      return players.filter(player => player._id !== payload.id);
     default:
       return players;
   }
 }
 
+const API = 'https://api-js401.herokuapp.com/api/v1/players';
 export const actions = {};
 
 actions.loadPlayers = () => {
-  let playersToLoad = [
-    { name: 'Mickey Mantle', position: 'CF', bats: 'R', throws: 'R' },
-    { name: 'Derek Jeter', position: 'SS', bats: 'L', throws: 'R' },
-  ];
-
   return dispatch => {
-    setTimeout(() => {
-      dispatch(actions.get(playersToLoad));
-    }, 2000);
+    fetch(API)
+      .then(results => results.json())
+      .then(body => {
+        dispatch(actions.get(body.results));
+      });
   }
 }
 
@@ -39,10 +37,16 @@ actions.get = (players) => ({
 
 actions.remotePut = (id, record) => {
   return dispatch => {
-    // Pretend we went to an API
-    setTimeout(() => {
-      dispatch(actions.put(id, record))
-    }, 3000);
+    fetch(`${API}/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(record),
+      headers: new Headers({'Content-Type': 'application/json'}),
+    })
+      .then(res => res.json())
+      .then(body => {
+        console.log(body);
+        dispatch(actions.put(id, body))
+      });
   };
 };
 

@@ -14,7 +14,7 @@ const playerUiSchema = {
 }
 
 const EditPlayerSchema = (props) => {
-  let id = parseInt(props.match.params.id, 10);
+  let id = props.match.params.id;
   let player = props.player; // props.players[props.match.params.id];
   if (!player) {
     return (
@@ -24,7 +24,11 @@ const EditPlayerSchema = (props) => {
 
   function handleSubmit(submitData) {
     // console.log(submitData);
-    props.savePlayer(id, submitData.formData);
+    let {
+      _id, __v,
+      ...record
+    } = submitData.formData;
+    props.savePlayer(id, record);
 
     props.history.push('/');
   }
@@ -47,7 +51,7 @@ export default connect(
   (state, props) => ({
     // players: state.players, // We don't need all the players, just one
 
-    player: state.players[props.match.params.id],
+    player: state.players.find(player => player._id === props.match.params.id),
   }),
   dispatch => ({
     savePlayer: (id, record) => dispatch(actions.remotePut(id, record)),

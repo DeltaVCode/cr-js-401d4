@@ -15,7 +15,7 @@ const PlayersList = (props) => {
       {props.players.map((player, idx) => (
         <tr key={idx}>
           <th>{player.name}</th>
-          <td><Link to={`/players/${idx}/edit-schema`}>Edit</Link></td>
+          <td><Link to={`/players/${player._id}/edit-schema`}>Edit</Link></td>
           <td><Link to={`/players/${idx}/edit-redux`}>Edit (Redux Form)</Link></td>
         </tr>
       ))}
