@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from './middleware/logger';
+import thunk from './middleware/thunk';
 
 import { reducer as form } from 'redux-form';
 
@@ -12,4 +13,4 @@ let reducers = combineReducers({
   form,
 });
 
-export default () => createStore(reducers, composeWithDevTools(applyMiddleware(logger)));
+export default () => createStore(reducers, composeWithDevTools(applyMiddleware(logger, thunk)));
