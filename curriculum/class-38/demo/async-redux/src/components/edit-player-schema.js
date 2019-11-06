@@ -50,6 +50,6 @@ export default connect(
     player: state.players[props.match.params.id],
   }),
   dispatch => ({
-    savePlayer: (id, record) => dispatch(actions.put(id, record)),
+    savePlayer: (id, record) => dispatch(actions.remotePut(id, record)),
   })
 )(EditPlayerSchema);
