@@ -1,5 +1,6 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import logger from './middleware/logger';
 
 import { reducer as form } from 'redux-form';
 
@@ -11,4 +12,4 @@ let reducers = combineReducers({
   form,
 });
 
-export default () => createStore(reducers, composeWithDevTools());
+export default () => createStore(reducers, composeWithDevTools(applyMiddleware(logger)));
