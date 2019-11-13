@@ -17,6 +17,7 @@ const IndexPage = () => (
     <hr />
     <ul>
       <li><Link to="/">Go back to the homepage</Link></li>
+      <li><Link to="/words">Show me words</Link></li>
       <li><Link to="/article/">Read an article</Link></li>
     </ul>
   </Layout>
