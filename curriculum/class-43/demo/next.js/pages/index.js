@@ -3,14 +3,20 @@ import Link from 'next/link';
 import Head from '../components/head';
 import Nav from '../components/nav';
 
-const Home = () => (
+let list = ['Keith', 'Craig', 'Jess'];
 
+const Home = () => (
   <>
     <Head title="Home" />
     <Nav />
 
     <div>
         Home Page!
+        <ul>
+          {list.map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
+        </ul>
     </div>
   </>
 
